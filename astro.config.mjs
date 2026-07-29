@@ -11,7 +11,11 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'zioscp',
-			logo: { src: './src/assets/logo.svg', replacesTitle: true },
+			logo: {
+				light: './src/assets/logo-light.svg',
+				dark: './src/assets/logo-dark.svg',
+				replacesTitle: true,
+			},
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/deblasis/zioscp' },
 			],

@@ -63,7 +63,9 @@ const faqs = [
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<meta name="theme-color" content="#0b1020" />
+		<meta name="author" content="Alessandro De Blasis" />
 		<link rel="icon" type="image/svg+xml" href={base + 'favicon.svg'} />
+		<link rel="canonical" href={site + '/'} />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 
 		<!-- Open Graph / Twitter card. og.png is generated via assets/images.mjs. -->
@@ -72,10 +74,25 @@ const faqs = [
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={ogImage} />
+		<meta property="og:site_name" content="zioscp" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImage} />
+
+		<!-- Structured data (SoftwareApplication) for rich search results. -->
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "SoftwareApplication",
+			name: "zioscp",
+			applicationCategory: "DeveloperApplication",
+			operatingSystem: "macOS, Linux, Windows",
+			description: description,
+			url: site + "/",
+			downloadUrl: github,
+			license: "https://github.com/deblasis/zioscp/blob/master/LICENSE-MIT",
+			offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+		})} is:inline />
 	</head>
 	<body>
 		<header class="topbar">

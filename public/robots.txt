@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://deblasis.github.io/zioscp-web/sitemap-index.xml

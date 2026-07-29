@@ -7,6 +7,9 @@ const sponsor = 'https://github.com/sponsors/deblasis';
 const github = 'https://github.com/deblasis/zioscp';
 const profile = 'https://github.com/deblasis';
 const year = '2026';
+// Build commit short SHA, injected at build time (PUBLIC_COMMIT_SHA; set in the
+// Pages workflow from GITHUB_SHA). Empty in local dev -> the link is hidden.
+const commit = import.meta.env.PUBLIC_COMMIT_SHA ?? '';
 ---
 
 <footer class:list={['sf', variant]} aria-label="Site footer">
@@ -33,10 +36,17 @@ const year = '2026';
 		<span>Made in Europe with love by <a href={profile} rel="noopener">@deblasis</a> &amp; contributors</span>
 		<span class="sf-dot">·</span>
 		<span>&copy; {year} zioscp</span>
+		{commit && (
+			<>
+				<span class="sf-dot">·</span>
+				<a class="sf-commit" href={'https://github.com/deblasis/zioscp-web/commit/' + commit} rel="noopener" title="build commit">{commit}</a>
+			</>
+		)}
 		<span class="sf-dot">·</span>
 		<span>Built with Zig · Astro · Starlight</span>
 	</div>
 	<p class="sf-legal">Independent project, dual-licensed MIT OR Apache-2.0. All names &amp; marks belong to their respective owners; used for identification, not affiliation.</p>
+	<div class="sf-stripe" aria-hidden="true"></div>
 </footer>
 
 <style>
@@ -105,6 +115,14 @@ const year = '2026';
 		color: #525c70;
 		font-size: 0.72rem;
 	}
+	.sf-commit {
+		color: #6b768c;
+	}
+	.sf-stripe {
+		height: 3px;
+		background: linear-gradient(90deg, #1e3a8a, #3b82f6 40%, #93c5fd 75%, #60a5fa);
+		opacity: 0.75;
+	}
 
 	/* Compact variant for Starlight doc pages (single row). */
 	.sf.compact {
@@ -120,6 +138,9 @@ const year = '2026';
 		color: var(--sl-color-gray-2, #8a94a8);
 	}
 	.sf.compact .sf-legal {
+		display: none;
+	}
+	.sf.compact .sf-stripe {
 		display: none;
 	}
 </style>

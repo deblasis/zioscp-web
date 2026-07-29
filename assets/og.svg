@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+	<defs>
+		<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+			<stop offset="0" stop-color="#0b1020" />
+			<stop offset="1" stop-color="#141c33" />
+		</linearGradient>
+	</defs>
+	<rect width="1200" height="630" fill="url(#bg)" />
+	<!-- subtle blue speed streaks -->
+	<g stroke="#3b82f6" stroke-width="3" opacity="0.10" stroke-linecap="round">
+		<line x1="0" y1="120" x2="1200" y2="92" />
+		<line x1="0" y1="195" x2="1200" y2="168" />
+		<line x1="0" y1="540" x2="1200" y2="566" />
+	</g>
+	<!-- wordmark: transfer arrow + zioscp -->
+	<g transform="translate(82,212)">
+		<path d="M0 60 L62 60 M42 30 L62 60 L42 90" stroke="#60a5fa" stroke-width="7"
+			fill="none" stroke-linecap="round" stroke-linejoin="round" />
+		<text x="88" y="78" font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace"
+			font-size="96" font-weight="700" fill="#e6eaf2" letter-spacing="-2">zio<tspan
+				fill="#60a5fa">scp</tspan></text>
+	</g>
+	<!-- tagline -->
+	<text x="86" y="378" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif"
+		font-size="36" fill="#93a0b8">Faster, resumable, parallel <tspan fill="#dbe3f0">scp</tspan> over SSH.</text>
+	<!-- features -->
+	<text x="86" y="468" font-family="ui-monospace, Menlo, monospace" font-size="27" fill="#7c879b">
+		Resume  ·  Parallel  ·  Pipelined  ·  Self-contained</text>
+	<!-- platforms + license -->
+	<text x="86" y="556" font-family="ui-monospace, Menlo, monospace" font-size="22" fill="#525c70">
+		macOS · Linux · Windows     —     MIT OR Apache-2.0</text>
+</svg>
