@@ -47,8 +47,8 @@ const dims = { cols: 100, rows: 28 };
 				<AsciinemaCast src={c + 's2-resume.cast'} cols={100} rows={26} caption="A <code>.zioscppart</code> sidecar records progress; a re-run picks up where it stopped." />
 
 				<h2>Parallel recursive copy</h2>
-				<p class="lede">A folder of 60 files across 4 connections, tracked by one clean aggregate line.</p>
-				<AsciinemaCast src={c + 's3-parallel.cast'} cols={100} rows={26} caption="<code>-r -j4</code>: files, bytes, throughput, and ETA for the whole run." />
+				<p class="lede">Each copied file prints as it finishes (scp-style), scrolling above a single pinned aggregate bar that tracks the whole run.</p>
+				<AsciinemaCast src={c + 's3-parallel.cast'} cols={100} rows={26} caption="<code>-r -j4</code>: one line per file, plus files / bytes / throughput / ETA — all preserved in scrollback." />
 
 				<h2>vs stock scp</h2>
 				<p class="lede">Same 20 files over a 100 ms-RTT link. scp crawls; zioscp stays fast and shows you everything.</p>
