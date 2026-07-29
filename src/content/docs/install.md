@@ -41,6 +41,20 @@ irm https://raw.githubusercontent.com/deblasis/zioscp/master/install.ps1 | iex
 Downloads the Windows binary and installs it to `%LOCALAPPDATA%\zioscp`, then
 adds that to your user PATH (open a new terminal to use it).
 
+### A note on antivirus false positives (Windows)
+
+zioscp's Windows binary is self-contained and statically linked, and it does
+raw networking, SSH/crypto, and bulk file I/O, which is exactly the behaviour
+heuristic antivirus engines associate with malware. Because it is also
+**unsigned** (no paid Authenticode certificate), some AV products (Bitdefender,
+occasionally Windows Defender) flag it on first download. This is a **false
+positive**: the binary is built from public source by GitHub Actions and every
+release ships a checksum you can verify (see [Verify](#verify)).
+
+If your AV quarantines it, verify the download against the published checksum
+and, if you trust the source, add an exclusion. Signed Windows builds are
+tracked for a future release.
+
 ## Download a binary
 
 Grab the right archive for your platform from the
@@ -49,11 +63,11 @@ and put `zioscp` on your `PATH`:
 
 | Platform | Archive |
 | --- | --- |
-| macOS (Apple Silicon) | `zioscp-v0.6.0-aarch64-macos.tar.gz` |
-| macOS (Intel) | `zioscp-v0.6.0-x86_64-macos.tar.gz` |
-| Linux (x86_64) | `zioscp-v0.6.0-x86_64-linux-gnu.tar.gz` |
-| Linux (arm64) | `zioscp-v0.6.0-aarch64-linux-gnu.tar.gz` |
-| Windows (x86_64) | `zioscp-v0.6.0-x86_64-windows-gnu.zip` |
+| macOS (Apple Silicon) | `zioscp-v0.7.0-aarch64-macos.tar.gz` |
+| macOS (Intel) | `zioscp-v0.7.0-x86_64-macos.tar.gz` |
+| Linux (x86_64) | `zioscp-v0.7.0-x86_64-linux-gnu.tar.gz` |
+| Linux (arm64) | `zioscp-v0.7.0-aarch64-linux-gnu.tar.gz` |
+| Windows (x86_64) | `zioscp-v0.7.0-x86_64-windows-gnu.zip` |
 
 ## Build from source
 
@@ -73,7 +87,16 @@ self-contained binary (vendors libssh2 + OpenSSL statically) — see
 ## Verify
 
 ```sh
+zioscp --version
 zioscp --help
+```
+
+Every release also ships a `SHA256SUMS.txt` so you can confirm a download
+hasn't been tampered with:
+
+```sh
+curl -fsSL https://github.com/deblasis/zioscp/releases/latest/download/SHA256SUMS.txt
+sha256sum -c SHA256SUMS.txt   # after downloading the matching archive(s)
 ```
 
 Next: the [Quickstart](../quickstart/).
