@@ -74,11 +74,11 @@ and put `zioscp` on your `PATH`:
 
 | Platform | Archive |
 | --- | --- |
-| macOS (Apple Silicon) | `zioscp-v0.7.1-aarch64-macos.tar.gz` |
-| macOS (Intel) | `zioscp-v0.7.1-x86_64-macos.tar.gz` |
-| Linux (x86_64) | `zioscp-v0.7.1-x86_64-linux-gnu.tar.gz` |
-| Linux (arm64) | `zioscp-v0.7.1-aarch64-linux-gnu.tar.gz` |
-| Windows (x86_64) | `zioscp-v0.7.1-x86_64-windows-gnu.zip` |
+| macOS (Apple Silicon) | `zioscp-v0.7.2-aarch64-macos.tar.gz` |
+| macOS (Intel) | `zioscp-v0.7.2-x86_64-macos.tar.gz` |
+| Linux (x86_64) | `zioscp-v0.7.2-x86_64-linux-gnu.tar.gz` |
+| Linux (arm64) | `zioscp-v0.7.2-aarch64-linux-gnu.tar.gz` |
+| Windows (x86_64) | `zioscp-v0.7.2-x86_64-windows-gnu.zip` |
 
 ## Build from source
 
