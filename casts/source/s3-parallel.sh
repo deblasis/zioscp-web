@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-. /tmp/zio-casts/lib.sh
+. "$(dirname "$0")/lib.sh"
 rm -rf /tmp/dl_many
 
 banner "zioscp — parallel recursive copy (-r -j)"

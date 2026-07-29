@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-. /tmp/zio-casts/lib.sh
+. "$(dirname "$0")/lib.sh"
 rm -rf /tmp/scp_cmp /tmp/zio_cmp
 
 banner "zioscp vs scp — 20 files over a 100ms-RTT link"

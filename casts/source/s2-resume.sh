@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-. /tmp/zio-casts/lib.sh
+. "$(dirname "$0")/lib.sh"
 rm -f /tmp/dl_resume.bin*
 
 banner "zioscp — resume after an interrupted transfer"

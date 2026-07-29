@@ -34,6 +34,12 @@ type_run() {
 # Type a clean command, run it in the background, and interrupt it after $2
 # seconds (simulating Ctrl-C). Used to demo resume: the .zioscppart sidecar
 # persists the last acked offset, so a re-run continues from there.
+#
+# NOTE: non-interactive bash sets SIGINT to SIG_IGN for background jobs, so
+# `kill -INT` is silently ignored (zioscp would run to completion). SIGTERM is
+# not ignored by bash for bg jobs, so we use it to actually stop the transfer.
+# (zioscp itself responds to a real Ctrl-C in an interactive terminal — this is
+# purely a scripting artifact of backgrounding the process.)
 run_interrupt() {
   local cmd="$1"; local secs="$2"
   printf '%s' "$PROMPT"
@@ -45,8 +51,8 @@ run_interrupt() {
   done
   sleep 0.3
   printf '\n'
-  printf '\033[2m# (Ctrl-C after %ss)\033[0m\n' "$secs"
-  bash -c "$cmd & p=\$!; sleep $secs; kill -INT \$p 2>/dev/null; wait \$p 2>/dev/null; true"
+  printf '\033[2m# (Ctrl-C after %ss — interrupted)\033[0m\n' "$secs"
+  bash -c "$cmd & p=\$!; sleep $secs; kill -TERM \$p 2>/dev/null; wait \$p 2>/dev/null; true"
   printf '\n'
   sleep 0.4
 }
