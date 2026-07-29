@@ -1,5 +1,6 @@
 ---
 import SiteFooter from '../components/SiteFooter.astro';
+import AsciinemaCast from '../components/AsciinemaCast.astro';
 const base = import.meta.env.BASE_URL;
 const site = 'https://deblasis.github.io/zioscp-web';
 const github = 'https://github.com/deblasis/zioscp';
@@ -168,6 +169,21 @@ const faqs = [
 				</div>
 			</section>
 
+			<!-- SEE IT IN ACTION -->
+			<section class="section demo-section">
+				<div class="wrap">
+					<h2 class="center">Watch it beat scp</h2>
+					<p class="center lede">
+						Same 20 files over a 100 ms-RTT link: <code>scp -r</code> crawls, while
+						<code>zioscp -r -j4</code> flies and shows you everything. (Real recording.)
+					</p>
+					<div class="demo-wrap">
+						<AsciinemaCast src={base + 'casts/s4-vs-scp.cast'} cols={100} rows={26} />
+					</div>
+					<p class="center read-more"><a href={base + 'demos'}>More demos →</a></p>
+				</div>
+			</section>
+
 			<!-- FAQ -->
 			<section class="section faq">
 				<div class="wrap narrow">
@@ -294,6 +310,9 @@ const faqs = [
 	.proof-line { font-size: 0.82rem !important; color: var(--accent-ink) !important; }
 	.read-more { text-align: center; margin-top: 1.8rem; }
 	.read-more a { color: var(--accent-ink); }
+	.demo-section { background: #f7f8fb; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+	.demo-section .lede { color: var(--muted); max-width: 40rem; margin: 0 auto 0.5rem; }
+	.demo-wrap { max-width: 50rem; margin: 1.8rem auto 0; }
 
 	.faq details { border-bottom: 1px solid var(--line); padding: 0.8rem 0; }
 	.faq summary { cursor: pointer; font-weight: 600; color: var(--ink); }

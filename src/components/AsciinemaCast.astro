@@ -1,0 +1,64 @@
+---
+// Embeds an asciinema recording (asciicast v2) via the bundled asciinema-player.
+// `src` is the URL to the .cast file; cols/rows set the terminal size recorded.
+interface Props {
+	src: string;
+	cols?: number;
+	rows?: number;
+	caption?: string;
+}
+const { src, cols = 100, rows = 26, caption } = Astro.props;
+---
+
+<figure class="cast-figure">
+	<div class="cast" data-src={src} data-cols={cols} data-rows={rows}></div>
+	{caption && <figcaption set:html={caption}></figcaption>}
+</figure>
+
+<script>
+	import { create } from 'asciinema-player';
+	import 'asciinema-player/dist/bundle/asciinema-player.css';
+
+	function initCasts() {
+		document.querySelectorAll('.cast:not([data-ready])').forEach((el) => {
+			el.setAttribute('data-ready', '1');
+			create(
+				el.getAttribute('data-src') || '',
+				el,
+				{
+					cols: Number(el.getAttribute('data-cols') || 100),
+					rows: Number(el.getAttribute('data-rows') || 26),
+					autoPlay: true,
+					loop: true,
+					controls: true,
+					theme: 'tango',
+					idleTimeLimit: 2,
+					terminalFontSize: '13px',
+				}
+			);
+		});
+	}
+	initCasts();
+</script>
+
+<style>
+	.cast-figure {
+		margin: 1.6rem 0;
+	}
+	.cast {
+		border-radius: 12px;
+		overflow: hidden;
+		background: #0b1020;
+		box-shadow: 0 10px 30px rgba(2, 6, 23, 0.28);
+	}
+	.cast :global(.asciinema-player) {
+		border-radius: 12px;
+	}
+	figcaption {
+		margin-top: 0.6rem;
+		font-size: 0.85rem;
+		line-height: 1.5;
+		color: #5b6678;
+		font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	}
+</style>

@@ -1,0 +1,96 @@
+---
+import AsciinemaCast from '../components/AsciinemaCast.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+const base = import.meta.env.BASE_URL;
+const github = 'https://github.com/deblasis/zioscp';
+const c = base + 'casts/';
+const dims = { cols: 100, rows: 28 };
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>zioscp — demos</title>
+		<meta name="description" content="Watch zioscp transfer files: live progress, resume, parallel copies, and a head-to-head vs scp." />
+		<link rel="icon" type="image/svg+xml" href={base + 'favicon.svg'} />
+	</head>
+	<body>
+		<header class="topbar">
+			<a class="brand" href={base}>← zioscp</a>
+			<nav>
+				<a href={base}>Home</a>
+				<a href={base + 'quickstart'}>Docs</a>
+				<a href={github} rel="noopener">GitHub</a>
+			</nav>
+		</header>
+
+		<main>
+			<section class="intro">
+				<div class="wrap">
+					<h1>See it run</h1>
+					<p>
+						Real terminal recordings of zioscp against a live sshd. Every bar, ETA, and
+						speed figure is captured from an actual transfer — nothing is staged.
+					</p>
+				</div>
+			</section>
+
+			<section class="wrap casts">
+				<h2>Live progress, throughput, and ETA</h2>
+				<p class="lede">A single download shows a moving bar, bytes done, throughput, and an ETA — out of the box.</p>
+				<AsciinemaCast src={c + 's1-download.cast'} cols={100} rows={26} caption="40 MB download, throttled so the bar is visible." />
+
+				<h2>Resume after an interruption</h2>
+				<p class="lede">A dropped connection no longer means starting over. Interrupt a transfer, re-run the same command, and it continues — verified.</p>
+				<AsciinemaCast src={c + 's2-resume.cast'} cols={100} rows={26} caption="A <code>.zioscppart</code> sidecar records progress; a re-run picks up where it stopped." />
+
+				<h2>Parallel recursive copy</h2>
+				<p class="lede">A folder of 60 files across 4 connections, tracked by one clean aggregate line.</p>
+				<AsciinemaCast src={c + 's3-parallel.cast'} cols={100} rows={26} caption="<code>-r -j4</code>: files, bytes, throughput, and ETA for the whole run." />
+
+				<h2>vs stock scp</h2>
+				<p class="lede">Same 20 files over a 100 ms-RTT link. scp crawls; zioscp stays fast and shows you everything.</p>
+				<AsciinemaCast src={c + 's4-vs-scp.cast'} cols={100} rows={28} caption="<code>scp -r</code> ~12.5 s vs <code>zioscp -r -j4</code> ~4.7 s — and the gap widens with more files." />
+			</section>
+		</main>
+
+		<SiteFooter />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--bg: #ffffff;
+		--ink: #0e1320;
+		--muted: #5b6678;
+		--line: #e7eaf0;
+	}
+	* { box-sizing: border-box; }
+	body {
+		margin: 0;
+		font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+		color: var(--ink);
+		background: var(--bg);
+		-webkit-font-smoothing: antialiased;
+	}
+	.wrap { max-width: 56rem; margin: 0 auto; padding: 0 1.5rem; }
+	.topbar {
+		display: flex; align-items: center; justify-content: space-between;
+		padding: 0.9rem 1.5rem; border-bottom: 1px solid var(--line);
+		position: sticky; top: 0; background: rgba(255,255,255,0.88);
+		backdrop-filter: saturate(140%) blur(8px); z-index: 10;
+	}
+	.topbar nav { display: flex; gap: 1.1rem; }
+	.topbar a { color: var(--muted); text-decoration: none; font-size: 0.92rem; }
+	.topbar a:hover { color: var(--ink); }
+	.brand { color: var(--ink); font-weight: 650; }
+	.intro { padding: 3rem 0 1.5rem; border-bottom: 1px solid var(--line); }
+	.intro h1 { font-size: 2rem; margin: 0 0 0.5rem; letter-spacing: -0.01em; }
+	.intro p { color: var(--muted); margin: 0; }
+	.casts { padding: 2.5rem 0 4rem; }
+	.casts h2 { font-size: 1.3rem; margin: 2.4rem 0 0.4rem; }
+	.casts h2:first-child { margin-top: 0; }
+	.lede { color: var(--muted); margin: 0 0 0.4rem; }
+</style>
