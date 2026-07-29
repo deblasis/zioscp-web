@@ -13,7 +13,7 @@ Pick whichever install path you like.
 brew install deblasis/tap/zioscp
 ```
 
-## One-line installer (macOS, Linux, Windows)
+## macOS / Linux (one-line installer)
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/deblasis/zioscp/master/install.sh | sh
@@ -21,7 +21,25 @@ curl -fsSL https://raw.githubusercontent.com/deblasis/zioscp/master/install.sh |
 
 It detects your OS and architecture, downloads the matching binary from the
 latest release, and installs it to `~/.local/bin` (set `PREFIX=...` to choose
-another location). On Windows run it under Git Bash, MSYS2, or Cygwin.
+another location).
+
+## Windows
+
+Scoop:
+
+```sh
+scoop bucket add deblasis https://github.com/deblasis/scoop-bucket
+scoop install deblasis/zioscp
+```
+
+Or PowerShell (one-line installer):
+
+```powershell
+irm https://raw.githubusercontent.com/deblasis/zioscp/master/install.ps1 | iex
+```
+
+Downloads the Windows binary and installs it to `%LOCALAPPDATA%\zioscp`, then
+adds that to your user PATH (open a new terminal to use it).
 
 ## Download a binary
 
