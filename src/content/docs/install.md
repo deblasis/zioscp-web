@@ -51,9 +51,20 @@ occasionally Windows Defender) flag it on first download. This is a **false
 positive**: the binary is built from public source by GitHub Actions and every
 release ships a checksum you can verify (see [Verify](#verify)).
 
-If your AV quarantines it, verify the download against the published checksum
-and, if you trust the source, add an exclusion. Signed Windows builds are
-tracked for a future release.
+**Why unsigned:** Authenticode code-signing certificates are not free, and
+zioscp is a personal open-source project without one yet.
+
+**The plan:** once zioscp has enough traction or sponsorship, releases will be
+Authenticode-signed, which removes the AV and SmartScreen warnings for most
+users.
+
+If your AV quarantines it in the meantime:
+
+- verify the download against the published checksum (see [Verify](#verify));
+- if you trust the source, add an antivirus exclusion for zioscp;
+- consider [sponsoring](https://github.com/sponsors/deblasis) the project,
+  which is what would fund signing; and
+- report the file as a false positive to your antivirus vendor.
 
 ## Download a binary
 
