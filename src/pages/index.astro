@@ -114,7 +114,7 @@ const faqs = [
 
 		<main>
 			<!-- HERO -->
-			<section class="hero">
+			<section class="hero" style={`--hero-bg-img:url('${base}hero-bg.webp')`}>
 				<div class="wrap">
 					<p class="eyebrow">Drop-in <code>scp</code> replacement · written in Zig</p>
 					<h1>Move files over SSH.<br /><span class="accent">Fast, resumable, in parallel.</span></h1>
@@ -275,7 +275,14 @@ const faqs = [
 	.cta-sm:hover { background: var(--accent-ink); }
 
 	/* Hero */
-	.hero { background: var(--hero-bg); color: var(--hero-ink); padding: 4.5rem 0 4rem; }
+	.hero {
+		background:
+			linear-gradient(rgba(11, 16, 32, 0.82), rgba(11, 16, 32, 0.93)),
+			var(--hero-bg-img) center / cover no-repeat,
+			var(--hero-bg);
+		color: var(--hero-ink);
+		padding: 4.5rem 0 4rem;
+	}
 	.hero .wrap { display: flex; flex-direction: column; align-items: flex-start; }
 	.eyebrow {
 		font-size: 0.82rem; letter-spacing: 0.04em; color: var(--hero-muted);
