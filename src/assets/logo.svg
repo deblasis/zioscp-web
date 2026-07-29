@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" fill="none" role="img" aria-label="zioscp">
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19" font-weight="600" letter-spacing="-0.02em">
+    <text x="26" y="22" fill="currentColor">zio<tspan fill="#3b82f6">scp</tspan></text>
+  </g>
+  <path d="M5 16 L17 16 M12 10 L17 16 L12 22" stroke="#3b82f6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

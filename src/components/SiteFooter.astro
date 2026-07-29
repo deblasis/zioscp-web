@@ -1,0 +1,125 @@
+---
+// stuntapi-style footer: minimal, single block, profile + sponsor links.
+// `variant` switches between the full landing footer and a compact docs footer.
+const { variant = 'full' } = Astro.props;
+const base = import.meta.env.BASE_URL; // '/zioscp-web/'
+const sponsor = 'https://github.com/sponsors/deblasis';
+const github = 'https://github.com/deblasis/zioscp';
+const profile = 'https://github.com/deblasis';
+const year = '2026';
+---
+
+<footer class:list={['sf', variant]} aria-label="Site footer">
+	{variant === 'full' && (
+		<div class="sf-top">
+			<a class="sf-brand" href={base} aria-label="zioscp home">
+				<svg width="116" height="24" viewBox="0 0 150 32" fill="none" aria-hidden="true">
+					<g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" font-weight="600" letter-spacing="-0.02em">
+						<text x="26" y="22" fill="currentColor">zio<tspan fill="#60a5fa">scp</tspan></text>
+					</g>
+					<path d="M5 16 L17 16 M12 10 L17 16 L12 22" stroke="#60a5fa" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</a>
+			<p class="sf-tag">Drop-in <code>scp</code> over SFTP. Resume, parallel, pipelined.</p>
+			<nav class="sf-nav" aria-label="Footer">
+				<a href={base + 'quickstart'}>docs</a>
+				<a href={github} rel="noopener">github</a>
+				<a href={base + 'reference/benchmarks'}>benchmarks</a>
+				<a class="sf-sponsor" href={sponsor} rel="noopener">♥ sponsor</a>
+			</nav>
+		</div>
+	)}
+	<div class="sf-meta">
+		<span>Made in Europe with love by <a href={profile} rel="noopener">@deblasis</a> &amp; contributors</span>
+		<span class="sf-dot">·</span>
+		<span>&copy; {year} zioscp</span>
+		<span class="sf-dot">·</span>
+		<span>Built with Zig · Astro · Starlight</span>
+	</div>
+	<p class="sf-legal">Independent project, dual-licensed MIT OR Apache-2.0. All names &amp; marks belong to their respective owners; used for identification, not affiliation.</p>
+</footer>
+
+<style>
+	.sf {
+		font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		background: #0b1020;
+		color: #9aa4b8;
+		font-size: 0.8rem;
+		line-height: 1.6;
+	}
+	.sf a {
+		color: #c4cdda;
+		text-decoration: none;
+		border-bottom: 1px dotted transparent;
+	}
+	.sf a:hover {
+		color: #fff;
+		border-bottom-color: #60a5fa;
+	}
+	.sf code {
+		font-family: inherit;
+		color: #c4cdda;
+	}
+	.sf-top {
+		max-width: 64rem;
+		margin: 0 auto;
+		padding: 2.2rem 1.5rem 1.1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+	}
+	.sf-brand {
+		color: #e6eaf2;
+		border: none;
+	}
+	.sf-tag {
+		margin: 0;
+		color: #7c879b;
+	}
+	.sf-nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.1rem;
+		margin-top: 0.3rem;
+	}
+	.sf-sponsor {
+		color: #f0a8c0;
+	}
+	.sf-meta {
+		max-width: 64rem;
+		margin: 0 auto;
+		padding: 0 1.5rem;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem;
+		color: #6b768c;
+	}
+	.sf-dot {
+		opacity: 0.6;
+	}
+	.sf-legal {
+		max-width: 64rem;
+		margin: 0 auto;
+		padding: 0.6rem 1.5rem 1.6rem;
+		color: #525c70;
+		font-size: 0.72rem;
+	}
+
+	/* Compact variant for Starlight doc pages (single row). */
+	.sf.compact {
+		background: transparent;
+		color: var(--sl-color-gray-3, #6b768c);
+	}
+	.sf.compact .sf-meta {
+		padding: 1rem 1.5rem;
+		justify-content: center;
+		text-align: center;
+	}
+	.sf.compact a {
+		color: var(--sl-color-gray-2, #8a94a8);
+	}
+	.sf.compact .sf-legal {
+		display: none;
+	}
+</style>

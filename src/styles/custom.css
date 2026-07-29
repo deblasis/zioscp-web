@@ -1,0 +1,15 @@
+/* Starlight theme tweaks for zioscp. */
+
+:root {
+	--sl-color-accent: #3b82f6;
+	--sl-color-accent-low: #1e3a8a;
+	--sl-color-accent-high: #93c5fd;
+	--sl-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+		"Liberation Mono", monospace;
+}
+
+/* Slightly punchier inline code in body text. */
+sl-code code,
+code {
+	font-family: var(--sl-font-mono);
+}
